@@ -7,15 +7,17 @@
         <th>Assunto</th>
         <th>Status</th>
         <th>Descrição</th>
-        <th></th>
+        <th></th> {{-- tag de visualizações --}}
     </thead>
     <tbody>
-        @foreach ($supports as $supports)
+        @foreach ($supports as $support)
         <tr>
             <td>{{ $support->subject }}</td>
             <td>{{ $support->status }}</td>
             <td>{{ $support->body }}</td>
-            <td></td>
+            <td>
+                >
+            </td>
         </tr>
         @endforeach
     </tbody>

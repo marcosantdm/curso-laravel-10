@@ -19,8 +19,14 @@ class SupportController extends Controller
         return view('admin/supports/create');
     }
 
-    public function store(Request $request)
+    //O Request é uma classe que contém os dados da requisição HTTP, como os dados do formulário, por exemplo.
+    public function store(Request $request, Support $support)
     {
-        dd($request->all());
+        $data = $request->all();
+        $data['status'] = 'a';
+
+        $support->create($data);
+
+        return redirect()->route('supports.index');
     }
 }
