@@ -14,6 +14,24 @@ class SupportController extends Controller
         return view('admin/supports/index', compact('supports'));
     }
 
+    public function show(string|int $id)
+    {
+        /**
+         ** Support:find($id) busca pela primary key, nesse caso o ID
+         ** Support:where('id', $id) busca pelo campo especificado, nesse caso o ID
+         ** Support:where('id', $id)->first() busca pelo campo especificado, nesse caso o ID, e retorna apenas o primeiro registro
+         ** Support:where('id', $id)->get() busca pelo campo especificado, nesse caso o ID, e retorna todos os registros
+         ** Support:where('id', $id)->paginate(10) busca pelo campo especificado, nesse caso o ID, e retorna todos os registros com paginação
+         ** Support:where('id', '=', $id) busca pelo campo especificado, nesse caso o ID, e retorna os registros utilizando o operador de comparação
+         */
+
+        if(!$support = Support::find($id)) {
+            return back();
+        }
+
+        return view('admin/supports/show', compact('support'));
+    }
+
     public function create()
     {
         return view('admin/supports/create');
