@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreUpdateSupportRequest;
 use App\Models\Support;
 use Illuminate\Http\Request;
 
@@ -38,7 +39,7 @@ class SupportController extends Controller
     }
 
     //O Request é uma classe que contém os dados da requisição HTTP, como os dados do formulário, por exemplo.
-    public function store(Request $request, Support $support)
+    public function store(StoreUpdateSupportRequest $request, Support $support)
     {
         $data = $request->all();
         $data['status'] = 'a';
