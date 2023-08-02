@@ -47,4 +47,32 @@ class SupportController extends Controller
 
         return redirect()->route('supports.index');
     }
+
+    public function edit(Support $support, string|int $id)
+    {
+        if(!$support = $support->where('id', $id)->first()) {
+            return back();
+        }
+
+        return view('admin/supports.edit', compact('support'));
+    }
+
+/**
+ * Sempre ao criar ou editar um dado no banco de dados, é necessário utilizar a classe Request para validar os dados.
+ * do contrário irá ocorrer um erro de MassAssignmentException.
+ */
+
+    public function update(Request $request, Support $support, string|int $id)
+    {
+        if(!$support = $support->where('id', $id)->first()) {
+            return back();
+        }
+
+        $support->update($request->only([
+            'subject',
+            'body',
+        ]));
+
+        return redirect()->route('supports.index');
+    }
 }
