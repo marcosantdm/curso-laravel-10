@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\DTO\CreateSupportDTO;
+use App\DTO\UpdateSupportDTO;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreUpdateSupportRequest;
 use App\Models\Support;
@@ -48,10 +50,9 @@ class SupportController extends Controller
     //O Request é uma classe que contém os dados da requisição HTTP, como os dados do formulário, por exemplo.
     public function store(StoreUpdateSupportRequest $request, Support $support)
     {
-        $data = $request->validated(); // pega apenas os dados validados
-        $data['status'] = 'a';
-
-        $support->create($data);
+        $this->service->new(
+            CreateSupportDTO::makeFromRequest($request)
+        );
 
         return redirect()->route('supports.index');
     }
@@ -71,18 +72,15 @@ class SupportController extends Controller
  * do contrário irá ocorrer um erro de MassAssignmentException.
  */
 
-    public function update(StoreUpdateSupportRequest $request, Support $support, string|int $id)
+    public function update(
+        StoreUpdateSupportRequest $request, Support $support, string|int $id)
     {
-        if(!$support = $support->where('id', $id)->first()) {
+        $support = $this->service->update(
+            UpdateSupportDTO::makeFromRequest($request)
+        );
+        if(!$support) {
             return back();
         }
-
-        // $support->update($request->only([  // Outro metodo de buscar e atualizar os dados corretos do formulário e usando o validated
-        //     'subject',
-        //     'body',
-        // ]));
-
-        $support->update($request->validated());
 
         return redirect()->route('supports.index');
     }
