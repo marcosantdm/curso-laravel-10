@@ -20,7 +20,17 @@ class SupportController extends Controller
 
     public function index(Request $request)
     {
-        $supports = $this->service->getAll($request->filter);
+        $supports = $this->service->paginate(
+            page: $request->get('page', 1),
+            totalPerPage: $request->get('totalPerPage', 15),
+            filter: $request->filter
+        );
+        /**
+         ** Após declarar o método getAll() (retornando os registros do banco de dados) na variável $supports nós devemos
+         ** chamar essa mesma variável e passar como parâmetro o model Support com o método paginate() para que
+         ** os registros sejam limitados por página, afim de não sobrecarregar a aplicação.
+         */
+        $supports = Support::paginate();
         return view('admin/supports/index', compact('supports'));
     }
 
