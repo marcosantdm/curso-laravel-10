@@ -35,5 +35,17 @@ class SupportService
     public function delete(string $id): void
     {
         $this->repository->delete($id);
+
+    /**
+     * A função flash() é comumente usada para exibir mensagens de sucesso,
+     * erro ou outras mensagens breves para o usuário após uma ação ou redirecionamento.
+     *
+     * Quando você usa session()->flash('success', ...), o Laravel armazenará temporariamente a mensagem 'success'
+     * na sessão até a próxima solicitação. Isso permite que você redirecione para outra página (por exemplo,
+     * a página de listagem de suportes) e exiba a mensagem de sucesso lá. Geralmente,
+     * você fará isso usando a diretiva Blade @if(session('success')) na view
+     */
+
+        session()->flash('success', "Suporte de id: $id excluído com sucesso!");
     }
 }
