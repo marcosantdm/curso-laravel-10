@@ -38,7 +38,6 @@ class SupportEloquentORM implements SupportRepositoryInterface
                      * podendo utilizar * para retornar todas"], nome do parâmetro, página atual)
                     */
                     ->paginate($totalPerPage, ['*'], 'page', $page);
-dd((new PaginationPresenter($result))->items());
         return new PaginationPresenter($result);
     }
 

@@ -30,7 +30,6 @@ class SupportController extends Controller
          ** chamar essa mesma variável e passar como parâmetro o model Support com o método paginate() para que
          ** os registros sejam limitados por página, afim de não sobrecarregar a aplicação.
          */
-        $supports = Support::paginate();
         return view('admin/supports/index', compact('supports'));
     }
 
