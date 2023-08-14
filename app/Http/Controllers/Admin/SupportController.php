@@ -22,7 +22,7 @@ class SupportController extends Controller
     {
         $supports = $this->service->paginate(
             page: $request->get('page', 1),
-            totalPerPage: $request->get('totalPerPage', 15),
+            totalPerPage: $request->get('totalPerPage', 1),
             filter: $request->filter
         );
         /**
@@ -30,7 +30,10 @@ class SupportController extends Controller
          ** chamar essa mesma variável e passar como parâmetro o model Support com o método paginate() para que
          ** os registros sejam limitados por página, afim de não sobrecarregar a aplicação.
          */
-        return view('admin/supports/index', compact('supports'));
+
+         $filters = ['filter' => $request->get('filter', '')];
+
+        return view('admin/supports/index', compact('supports', 'filters'));
     }
 
     public function show(string $id)
