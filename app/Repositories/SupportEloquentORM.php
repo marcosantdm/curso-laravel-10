@@ -69,10 +69,9 @@ class SupportEloquentORM implements SupportRepositoryInterface
         }
         return (object) $support->toArray();
     }
-    public function delete(string $id): bool
+    public function delete(string $id): void
     {
         $this->model->findOrFail($id)->delete();
-        return true;
     }
 
     public function new(CreateSupportDTO $dto): stdClass

@@ -60,6 +60,6 @@ class SupportService
      * você fará isso usando a diretiva Blade @if(session('success')) na view
      */
 
-        session()->flash('success', "Suporte de id: $id excluído com sucesso!");
+        // session()->flash('success', "Suporte de id: $id excluído com sucesso!");
     }
 }
