@@ -1,4 +1,12 @@
-<h1>Detalhes da dúvida {{ $support->id }}</h1>
+@extends('admin.layouts.app')
+
+@section('title', "Detalhes da dúvida - {$support->subject}")
+
+@section('header')
+    <h1 class="text-lg text-black-500">Detalhes da dúvida {{ $support->id }}</h1>
+@endsection
+
+@section('content')
 
 <ul>
     <li>Assunto: {{ $support->subject  }}</li>
@@ -9,5 +17,6 @@
 <form action="{{ route('supports.destroy', $support->id) }}" method="POST">
     @csrf
     @method('DELETE')
-    <button type="submit">Deletar</button>
+    <button type="submit"  class="bg-red-500 hover:bg-red-400 text-white font-bold py-2 px-4 border-b-4 border-red-700 hover:border-red-500 rounded">Deletar</button>
 </form>
+@endsection

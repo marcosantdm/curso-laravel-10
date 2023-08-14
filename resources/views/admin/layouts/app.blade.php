@@ -10,7 +10,7 @@
 </head>
 
 <body>
-    <section class="container px-4 mx-auto py-4">
+    <section class="container px-4 py-4">
 
             @yield('header')
 
