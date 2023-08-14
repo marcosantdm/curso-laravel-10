@@ -1,8 +1,10 @@
-<h1>Dúvida: {{ $support->id }}</h1>
+@extends('admin.layouts.app')
+@section('title', 'Editar Tópico')
+@section('header')
+<h1 class="text-lg text-black-500">Dúvida: {{ $support->subject }}</h1>
+@endsection
 
-{{-- tag para enviar e receber dados do component <x-alert></x-alert> --}}
-
-<x-alert/>
+@section('content')
 
 <form action="{{ route('supports.update', $support->id) }}" method="POST">
     {{-- Sempre que for fazer uma requisição PUT, PATCH ou DELETE,
@@ -12,3 +14,4 @@
         'support' => $support
         ])
 </form>
+@endsection
