@@ -22,7 +22,7 @@ class SupportController extends Controller
     {
         $supports = $this->service->paginate(
             page: $request->get('page', 1),
-            totalPerPage: $request->get('totalPerPage', 1),
+            totalPerPage: $request->get('totalPerPage', 15),
             filter: $request->filter
         );
         /**
@@ -66,7 +66,9 @@ class SupportController extends Controller
             CreateSupportDTO::makeFromRequest($request)
         );
 
-        return redirect()->route('supports.index');
+        return redirect()
+                ->route('supports.index')
+                ->with('message', 'Tópico cadastrado com sucesso!');
     }
 
     public function edit(string $id)
@@ -94,13 +96,17 @@ class SupportController extends Controller
             return back();
         }
 
-        return redirect()->route('supports.index');
+        return redirect()
+                ->route('supports.index')
+                ->with('message', 'Tópico atualizado com sucesso!');
     }
 
     public function destroy(string $id)
     {
         $this->service->delete($id);
 
-        return redirect()->route('supports.index');
+        return redirect()
+                ->route('supports.index')
+                ->with('feedback', 'Tópico excluído com sucesso!');
     }
 }

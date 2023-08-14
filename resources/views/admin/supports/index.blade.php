@@ -12,11 +12,12 @@
 exemplo: <x-alert></x-alert> (arquivo de component alert.blade.php),
 <x-feedback></x-feedback> (arquivo de component feedback.blade.php) --}}
 
-@if(session('success'))
+{{-- @if(session('success'))
     <x-feedback>
         {{ session('success') }}
     </x-feedback>
-@endif
+@endif --}}
+
 @include('admin.supports.partials.content')
 <x-pagination
     :paginator="$supports"
