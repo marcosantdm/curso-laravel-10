@@ -57,9 +57,10 @@ class StoreUpdateSupportRequest extends FormRequest
          ** que está sendo editado no banco de dados, o sistema irá ignorar a regra de unique e permitir a edição.
          */
 
-        if ($this->method() === 'PUT') {
+        if ($this->method() === 'PUT' || $this->method() === 'PATCH') {
+
             $rules['subject'] = [
-                'required',
+                'required', // 'nullable,
                 'min:3',
                 'max:255',
                 // "unique:supports,subject,{$this->id},id"
@@ -68,7 +69,7 @@ class StoreUpdateSupportRequest extends FormRequest
                   * A classe Rule funciona da mesma maneira que o unique, porém é mais legível e mais fácil de utilizar
                   * O subject só será único se o ID na variável $this->id for diferente da coluna id, do contrário poderá ser repetido.
                   */
-                Rule::unique('supports')->ignore($this->id),
+                Rule::unique('supports')->ignore($this->support ?? $this->id),
             ];
         }
 
