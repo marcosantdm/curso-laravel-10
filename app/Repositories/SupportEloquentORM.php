@@ -13,31 +13,32 @@ class SupportEloquentORM implements SupportRepositoryInterface
 
     public function __construct(
         protected Support $model,
-    ) {}
+    ) {
+    }
 
     public function paginate(int $page = 1, int $totalPerPage = 15, string $filter = null): PaginationInterface
     {
-               /**
+        /**
          ** Ao utilizar o WHERE, é necessário utilizar o GET para retornar os dados,
          ** caso não use o WHERE, pode utilizar o ALL
          */
         $result =  $this->model
-                    ->where(function ($query) use ($filter) {
-                        if ($filter) {
-                            /**
-                             * O SQL ABAIXO É EQUIVALENTE A:
-                             * SELECT * FROM supports WHERE subject = $filter OR body LIKE %$filter%
-                             */
-                            $query->where('subject', $filter);
-                            $query->orWhere('body', 'like', "%{$filter}%");
-                        }
-                    })
+            ->where(function ($query) use ($filter) {
+                if ($filter) {
                     /**
-                     * O método paginate funciona da seguinte forma:
-                     * paginate(número de registros por página, ["colunas que serão retornadas,
-                     * podendo utilizar * para retornar todas"], nome do parâmetro, página atual)
-                    */
-                    ->paginate($totalPerPage, ['*'], 'page', $page);
+                     * O SQL ABAIXO É EQUIVALENTE A:
+                     * SELECT * FROM supports WHERE subject = $filter OR body LIKE %$filter%
+                     */
+                    $query->where('subject', $filter);
+                    $query->orWhere('body', 'like', "%{$filter}%");
+                }
+            })
+            /**
+             * O método paginate funciona da seguinte forma:
+             * paginate(número de registros por página, ["colunas que serão retornadas,
+             * podendo utilizar * para retornar todas"], nome do parâmetro, página atual)
+             */
+            ->paginate($totalPerPage, ['*'], 'page', $page);
         return new PaginationPresenter($result);
     }
 
@@ -48,23 +49,23 @@ class SupportEloquentORM implements SupportRepositoryInterface
          ** caso não use o WHERE, pode utilizar o ALL
          */
         return $this->model
-                    ->where(function ($query) use ($filter) {
-                        if ($filter) {
-                            /**
-                             * O SQL ABAIXO É EQUIVALENTE A:
-                             * SELECT * FROM supports WHERE subject = $filter OR body LIKE %$filter%
-                             */
-                            $query->where('subject', $filter);
-                            $query->orWhere('body', 'like', "%{$filter}%");
-                        }
-                    })
-                    ->get()
-                    ->toArray();
+            ->where(function ($query) use ($filter) {
+                if ($filter) {
+                    /**
+                     * O SQL ABAIXO É EQUIVALENTE A:
+                     * SELECT * FROM supports WHERE subject = $filter OR body LIKE %$filter%
+                     */
+                    $query->where('subject', $filter);
+                    $query->orWhere('body', 'like', "%{$filter}%");
+                }
+            })
+            ->get()
+            ->toArray();
     }
     public function findOne(string $id): stdClass|null
     {
         $support = $this->model->find($id);
-        if(!$support) {
+        if (!$support) {
             return null;
         }
         return (object) $support->toArray();
@@ -85,7 +86,7 @@ class SupportEloquentORM implements SupportRepositoryInterface
     }
     public function update(UpdateSupportDTO $dto): stdClass|null
     {
-        if(!$support = $this->model->find($dto->id)) {
+        if (!$support = $this->model->find($dto->id)) {
             return null;
         }
 
