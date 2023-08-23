@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-use App\DTO\Replies\CreateReplyDTO;
+use App\DTO\Supports\Replies\CreateReplyDTO;
 use App\Repositories\Contracts\ReplyRepositoryInterface;
 use stdClass;
 

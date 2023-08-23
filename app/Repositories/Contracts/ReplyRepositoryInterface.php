@@ -2,7 +2,7 @@
 
 namespace App\Repositories\Contracts;
 
-use App\DTO\Replies\CreateReplyDTO;
+use App\DTO\Supports\Replies\CreateReplyDTO;
 use stdClass;
 
 interface ReplyRepositoryInterface
