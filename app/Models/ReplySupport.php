@@ -12,7 +12,7 @@ class ReplySupport extends Model
 {
     use HasFactory, HasUuids;
 
-    protected $table = 'replies_support';
+    protected $table = 'replies_supports';
 
     public function user(): BelongsTo
     {
