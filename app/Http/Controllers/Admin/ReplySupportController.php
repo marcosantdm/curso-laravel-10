@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\DTO\Supports\Replies\CreateReplyDTO;
 use App\Http\Controllers\Controller;
 use App\Services\ReplySupportService;
 use App\Services\SupportService;
@@ -25,7 +26,7 @@ class ReplySupportController extends Controller
          ** Support:where('id', $id)->paginate(10) busca pelo campo especificado, nesse caso o ID, e retorna todos os registros com paginação
          ** Support:where('id', '=', $id) busca pelo campo especificado, nesse caso o ID, e retorna os registros utilizando o operador de comparação
          */
-dd($id);
+
         if (!$support = $this->supportService->findOne($id)) {
             return back();
         }
@@ -33,5 +34,16 @@ dd($id);
         $replies = $this->replyService->getAllBySupportId($id);
 
         return view('admin.supports.replies.replies', compact('support'));
+    }
+
+    public function store(Request $request)
+    {
+        $this->replyService->createNew(
+            CreateReplyDTO::makeFromRequest($request)
+        );
+
+        return redirect()
+            ->route('replies.index', $request->support_id)
+            ->with('message', 'Cadastrado com sucesso!');
     }
 }

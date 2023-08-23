@@ -2,7 +2,7 @@
 
 namespace App\Repositories\Eloquent;
 
-use App\DTO\Replies\CreateReplyDTO;
+use App\DTO\Supports\Replies\CreateReplyDTO;
 use App\Models\ReplySupport as Model;
 use App\Repositories\Contracts\ReplyRepositoryInterface;
 use Illuminate\Support\Facades\Auth;
@@ -27,6 +27,6 @@ class ReplySupportRepository implements ReplyRepositoryInterface
             'user_id' => Auth::user()->id,
         ]);
 
-        return (object) $reply;
+        return (object) $reply->toArray();
     }
 }

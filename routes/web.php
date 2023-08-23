@@ -41,6 +41,7 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
+    Route::post('/supports/{id}/replies', [ReplySupportController::class, 'store'])->name('replies.store');
     Route::get('/supports/{id}/replies', [ReplySupportController::class, 'index'])->name('replies.index');
 
     // Route::resource('supports', SupportController::class); Esse comando substitui todas as rotas abaixo em uma API
