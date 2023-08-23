@@ -8,5 +8,5 @@ use stdClass;
 interface ReplyRepositoryInterface
 {
     public function getAllBySupportId(string $supportId): array;
-    public function createNew(CreateReplyDTO $createReplyDTO): stdClass;
+    public function createNew(CreateReplyDTO $dto): stdClass;
 }
