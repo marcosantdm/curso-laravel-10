@@ -19,7 +19,7 @@ class ReplySupportRepository implements ReplyRepositoryInterface
         $replies = $this->model->where('support_id', $supportId)->get();
         return $replies->toArray();
     }
-    public function createNewe(CreateReplyDTO $dto): stdClass
+    public function createNew(CreateReplyDTO $dto): stdClass
     {
         $reply = $this->model->create([
             'content' => $dto->content,
