@@ -33,7 +33,7 @@ class ReplySupportController extends Controller
 
         $replies = $this->replyService->getAllBySupportId($id);
 
-        return view('admin.supports.replies.replies', compact('support'));
+        return view('admin.supports.replies.replies', compact('support', 'replies'));
     }
 
     public function store(Request $request)
