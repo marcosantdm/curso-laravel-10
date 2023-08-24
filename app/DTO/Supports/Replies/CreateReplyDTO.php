@@ -2,6 +2,8 @@
 
 namespace App\DTO\Supports\Replies;
 
+use App\Http\Requests\StoreReplySupportRequest;
+
 class CreateReplyDTO
 {
     public function __construct(
@@ -9,7 +11,7 @@ class CreateReplyDTO
         public string $supportId,
     ) {}
 
-    public static function makeFromRequest(object $request): self
+    public static function makeFromRequest(StoreReplySupportRequest $request): self
     {
         return new self(
             $request->content,
