@@ -64,9 +64,9 @@ Este projeto é distribuído sob a licença [MIT](LICENSE), o que significa que 
 
 Para dúvidas, sugestões ou suporte, entre em contato com o desenvolvedor principal:
 
-**Nome do Desenvolvedor**: [Marcos Antonio de Lima Claudino]
-**E-mail**: [marcos.antoniodm039@gmail.com]
-**GitHub**: [https://github.com/marcosantdm]
-**Instagram**: [https://www.instagram.com/marcos_antoniodm/]
+- **Nome do Desenvolvedor**: [Marcos Antonio de Lima Claudino]
+- **E-mail**: [marcos.antoniodm039@gmail.com]
+- **GitHub**: [https://github.com/marcosantdm]
+- **Instagram**: [https://www.instagram.com/marcos_antoniodm/]
 
 Obrigado por usar o Projeto de Fórum! Esperamos que seja útil e atenda às suas necessidades de discussão online com recursos avançados de envio de e-mails e autenticação via Sanctum.
