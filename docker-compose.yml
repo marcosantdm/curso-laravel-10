@@ -43,7 +43,7 @@ services:
         networks:
             - laravel
 
-    # queue # O queue:work é um processo que fica rodando em background e fica executando os jobs que estão na fila.
+    # queue
     queue:
         image: especializati/laravel9-app
         restart: unless-stopped
