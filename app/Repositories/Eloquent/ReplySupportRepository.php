@@ -31,6 +31,8 @@ class ReplySupportRepository implements ReplyRepositoryInterface
             'user_id' => Auth::user()->id,
         ]);
 
+        $reply = $reply->with('user')->first();
+
         return (object) $reply->toArray();
     }
 
