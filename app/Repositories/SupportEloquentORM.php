@@ -25,6 +25,10 @@ class SupportEloquentORM implements SupportRepositoryInterface
          ** caso não use o WHERE, pode utilizar o ALL
          */
         $result =  $this->model
+            ->with(['replies' => function ($query) {
+                $query->limit(4);
+                $query->latest();
+            }])
             ->where(function ($query) use ($filter) {
                 if ($filter) {
                     /**
