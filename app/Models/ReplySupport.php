@@ -20,6 +20,8 @@ class ReplySupport extends Model
         'user_id',
     ];
 
+    protected $with = ['user'];
+
     public function createdAt(): Attribute
     {
         return Attribute::make(
