@@ -46,7 +46,9 @@ class SupportController extends Controller
         /**
          ** Ao passar um dado na função de uma API REST o LARAVEL automaticamente transforma o return em um json encode
          */
-        return new SupportResource($support);
+        return (new SupportResource($support))
+                    ->response()
+                    ->setStatusCode(Response::HTTP_CREATED);
     }
 
     /**
